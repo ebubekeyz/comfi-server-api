@@ -4,9 +4,18 @@ const { BadRequestError } = require('../errors');
 const moment = require('moment');
 
 const createOrder = async (req, res) => {
-  req.body.user = req.user.userId;
+  const { name, address, numItemsInCart, orderTotal, cartItems } = req.body;
 
-  const order = await Order.create(req.body);
+  console.log(name, address);
+
+  const order = await Order.create({
+    name,
+    address,
+    numItemsInCart,
+    orderTotal,
+    cartItems,
+    user: req.user.userId,
+  });
 
   res.status(StatusCodes.CREATED).json({ order: order });
 };

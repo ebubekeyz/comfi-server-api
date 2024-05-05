@@ -2,55 +2,31 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 
 const SingleOrderItemSchema = new mongoose.Schema({
-  image: {
-    type: String,
-    required: [true, 'Please provide an image'],
-  },
-  price: {
-    type: Number,
-    required: [true, 'Please provide price'],
-  },
-  title: {
-    type: String,
-    required: [true, 'Please provide an title'],
-  },
-  amount: {
-    type: Number,
-    required: [true, 'Please provide an amount'],
-  },
-  cartID: {
-    type: String,
-    required: [true, 'Please provide cartID'],
-  },
-  company: {
-    type: String,
-    required: [true, 'Please provide an company'],
-  },
-
-  productColor: {
-    type: String,
-    required: [true, 'Please provide an productColor'],
-  },
+  title: { type: String },
+  image: { type: String, required: true },
+  price: { type: Number, required: true },
+  amount: { type: Number, required: true },
+  cartID: { type: String, required: true },
+  company: { type: String, required: true },
+  productColor: { type: String, required: true },
 });
 
 const OrderSchema = new mongoose.Schema(
   {
     address: {
       type: String,
-      required: [true, 'Please provide address'],
+      required: true,
     },
     name: {
       type: String,
-      required: [true, 'Please provide a name'],
     },
     orderTotal: {
       type: String,
-      required: [true, 'Please provide total order'],
     },
     user: {
       type: mongoose.Types.ObjectId,
       ref: 'User',
-      required: [true, 'Please provide user'],
+      required: true,
     },
     status: {
       type: String,
@@ -59,7 +35,7 @@ const OrderSchema = new mongoose.Schema(
     },
     numItemsInCart: {
       type: Number,
-      required: [true, 'Please provide number of items in cart'],
+      required: true,
     },
     cartItems: [SingleOrderItemSchema],
     date: {

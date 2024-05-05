@@ -21,6 +21,7 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
+  console.log(req.body);
   const { identifier, password } = req.body;
   if (!identifier) {
     throw new BadRequestError('Please provide an email');

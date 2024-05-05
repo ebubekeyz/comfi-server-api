@@ -32,7 +32,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRouter);
 app.use('/api/products', productRouter);
-app.use('/api/orders', productRouter);
+app.use('/api/orders', orderRouter);
 
 app.get('/about', (req, res) => {
   res.send('Hello');
