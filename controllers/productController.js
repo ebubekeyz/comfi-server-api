@@ -126,6 +126,7 @@ const getAllProducts = async (req, res) => {
     attributes: product,
     meta: {
       pagination: { page: page, total: totalProducts, pageCount: numOfPage },
+      company: ['adidas', 'nike'],
     },
   });
 };
