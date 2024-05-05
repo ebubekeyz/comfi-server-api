@@ -77,6 +77,8 @@ const getAllProducts = async (req, res) => {
     result = Product.find({ category: { $regex: category, $options: 'i' } });
   }
 
+  // note
+
   if (price) {
     result = Product.find({ price: { $eq: price } });
   }
