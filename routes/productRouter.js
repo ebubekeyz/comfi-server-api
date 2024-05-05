@@ -20,7 +20,7 @@ router
   .delete(auth, authPermission('admin', 'owner'), deleteAllProducts);
 router
   .route('/:id')
-  .get(auth, getSingleProduct)
+  .get(getSingleProduct)
   .delete(auth, authPermission('admin', 'owner'), deleteSingleProduct)
   .patch(auth, updateSingleProduct);
 

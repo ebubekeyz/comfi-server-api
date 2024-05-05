@@ -30,6 +30,15 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please provide an image'],
     },
+    description: {
+      type: String,
+      required: [true, 'Please provide a description'],
+    },
+    colors: {
+      type: String,
+      enum: ['green', 'red', 'blue'],
+      default: 'green',
+    },
     user: {
       type: mongoose.Types.ObjectId,
       ref: 'User',
