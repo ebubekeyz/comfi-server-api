@@ -124,7 +124,9 @@ const getAllProducts = async (req, res) => {
 
   res.status(StatusCodes.OK).json({
     attributes: product,
-    meta: { pagination: { page: page, pageCount: numOfPage } },
+    meta: {
+      pagination: { page: page, total: totalProducts, pageCount: numOfPage },
+    },
   });
 };
 

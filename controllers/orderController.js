@@ -21,7 +21,9 @@ const getAllOrders = async (req, res) => {
   let result = Order.find(queryObject);
 
   if (search) {
-    result = Order.find({ name: { $regex: search, $options: 'i' } });
+    result = Order.find(queryObject, {
+      name: { $regex: search, $options: 'i' },
+    });
   }
   if (sort === 'latest') {
     result = result.sort('-createdAt');
@@ -38,14 +40,14 @@ const getAllOrders = async (req, res) => {
   }
 
   if (price) {
-    result = Order.find({ 'cartItems.price': { $eq: price } });
+    result = Order.find(queryObject, { 'cartItems.price': { $eq: price } });
   }
   if (status) {
-    result = Order.find({ status: { $eq: status } });
+    result = Order.find(queryObject, { status: { $eq: status } });
   }
 
   if (date) {
-    result = Order.find({ date: { $regex: date, $options: 'i' } });
+    result = Order.find(queryObject, { date: { $regex: date, $options: 'i' } });
   }
 
   const page = Number(req.query.page) || 1;
