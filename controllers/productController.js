@@ -129,6 +129,7 @@ const getAllProducts = async (req, res) => {
     meta: {
       pagination: { page: page, total: totalProducts, pageCount: numOfPage },
       companies: ['adidas', 'nike'],
+      categories: ['wedding dress', 'bridalmaid dress'],
     },
   });
 };

@@ -18,10 +18,7 @@ const ProductSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    category: {
-      type: String,
-      default: 'wedding dress',
-    },
+    category: ['Wedding Dress', 'Bridal Wedding Dress'],
     price: {
       type: Number,
       required: [true, 'Please provide a price'],
@@ -32,13 +29,8 @@ const ProductSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: [true, 'Please provide a description'],
     },
-    colors: {
-      type: String,
-      enum: ['green', 'red', 'blue'],
-      default: 'green',
-    },
+    colors: ['black', 'white'],
     user: {
       type: mongoose.Types.ObjectId,
       ref: 'User',
