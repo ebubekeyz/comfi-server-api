@@ -11,6 +11,7 @@ const {
   deleteSingleOrder,
   deleteAllOrders,
   getAllOrders,
+  getAllOrders2,
 } = require('../controllers/orderController');
 
 router
@@ -18,6 +19,8 @@ router
   .post(auth, createOrder)
   .get(auth, authPermission('admin', 'owner', 'user'), getAllOrders)
   .delete(auth, authPermission('admin', 'owner'), deleteAllOrders);
+
+router.route('/allOrders').get(getAllOrders2);
 
 router
   .route('/:id')

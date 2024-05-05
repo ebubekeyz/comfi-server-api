@@ -80,7 +80,9 @@ const getAllUsers = async (req, res) => {
 
   res.status(StatusCodes.OK).json({
     users: users,
-    meta: { pagination: { page: page, pageCount: numOfPage } },
+    meta: {
+      pagination: { page: page, total: totalUsers, pageCount: numOfPage },
+    },
   });
 };
 

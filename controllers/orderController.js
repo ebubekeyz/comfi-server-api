@@ -78,6 +78,60 @@ const getAllOrders = async (req, res) => {
   });
 };
 
+const getAllOrders2 = async (req, res) => {
+  let { sort, name, search, date, createdAt, price, status } = req.query;
+
+  let result = Order.find({});
+
+  if (search) {
+    result = Order.find({
+      name: { $regex: search, $options: 'i' },
+    });
+  }
+  if (sort === 'latest') {
+    result = result.sort('-createdAt');
+  }
+  if (sort === 'oldest') {
+    result = result.sort('createdAt');
+  }
+
+  if (sort === 'a-z') {
+    result = result.sort('name');
+  }
+  if (sort === 'z-a') {
+    result = result.sort('-name');
+  }
+
+  if (price) {
+    result = Order.find({ 'cartItems.price': { $eq: price } });
+  }
+  if (status) {
+    result = Order.find({ status: { $eq: status } });
+  }
+
+  if (date) {
+    result = Order.find({ date: { $regex: date, $options: 'i' } });
+  }
+
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const skip = Number(page - 1) * limit;
+
+  result = result.skip(skip).limit(limit);
+
+  const order = await result;
+
+  const totalOrder = await Order.countDocuments();
+  const numOfPage = Math.ceil(totalOrder / limit);
+
+  res.status(StatusCodes.OK).json({
+    order: order,
+    meta: {
+      pagination: { page: page, total: totalOrder, pageCount: numOfPage },
+    },
+  });
+};
+
 const getSingleOrder = async (req, res) => {
   const { id: orderId } = req.params;
   const order = await Order.findOne({ _id: orderId });
@@ -124,4 +178,5 @@ module.exports = {
   deleteSingleOrder,
   deleteAllOrders,
   getAllOrders,
+  getAllOrders2,
 };
