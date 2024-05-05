@@ -11,8 +11,8 @@ const ProductSchema = new mongoose.Schema(
       default: 'stella york',
     },
     shipping: {
-      type: Boolean,
-      default: true,
+      type: Strings,
+      default: 'off',
     },
     featured: {
       type: Boolean,

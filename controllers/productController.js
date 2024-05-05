@@ -70,7 +70,7 @@ const getAllProducts = async (req, res) => {
     result = Product.find({ company: { $regex: company, $options: 'i' } });
   }
   if (shipping) {
-    result = Product.find({ shipping: { $eq: shipping } });
+    result = Product.find({ shipping: { $regex: shipping, $options: 'i' } });
   }
 
   if (category) {
@@ -126,7 +126,7 @@ const getAllProducts = async (req, res) => {
     attributes: product,
     meta: {
       pagination: { page: page, total: totalProducts, pageCount: numOfPage },
-      company: ['adidas', 'nike'],
+      companies: ['adidas', 'nike'],
     },
   });
 };
