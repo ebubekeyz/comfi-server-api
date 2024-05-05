@@ -70,9 +70,12 @@ const getAllOrders = async (req, res) => {
   const totalOrder = await Order.countDocuments();
   const numOfPage = Math.ceil(totalOrder / limit);
 
-  res
-    .status(StatusCodes.OK)
-    .json({ order: order, page: page, pageCount: numOfPage });
+  res.status(StatusCodes.OK).json({
+    order: order,
+    meta: {
+      pagination: { page: page, total: totalOrder, pageCount: numOfPage },
+    },
+  });
 };
 
 const getSingleOrder = async (req, res) => {
