@@ -40,7 +40,7 @@ const OrderSchema = new mongoose.Schema(
     cartItems: [SingleOrderItemSchema],
     date: {
       type: String,
-      default: moment().format('MMMM Do YYYY, h:mm:ss a'),
+      default: moment().format('YYYY-DD-MM'),
     },
   },
   { timestamps: true }

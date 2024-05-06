@@ -110,7 +110,9 @@ const getAllOrders2 = async (req, res) => {
   }
 
   if (date) {
-    result = Order.find({ date: { $regex: date, $options: 'i' } });
+    result = Order.find({
+      date: { $eq: date },
+    });
   }
 
   const page = Number(req.query.page) || 1;

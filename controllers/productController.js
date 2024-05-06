@@ -48,18 +48,8 @@ const deleteAllProducts = async (req, res) => {
 };
 
 const getAllProducts = async (req, res) => {
-  let {
-    order,
-    search,
-    date,
-    createdAt,
-    sort,
-    price,
-    featured,
-    company,
-    shipping,
-    category,
-  } = req.query;
+  let { order, search, sort, price, featured, company, shipping, category } =
+    req.query;
 
   let result = Product.find({});
 
@@ -80,7 +70,7 @@ const getAllProducts = async (req, res) => {
   // note
 
   if (price) {
-    result = Product.find({ price: { $eq: price } });
+    result = Product.find({ price: { $lte: price } });
   }
   if (featured) {
     result = Product.find({ featured: { $eq: featured } });
@@ -106,12 +96,6 @@ const getAllProducts = async (req, res) => {
   if (sort === 'oldest') {
     result = result.sort('createdAt');
   }
-
-  // if (date) {
-  //   result = Product.find({
-  //     createdAt: { $gte: new Date('createdAt') },
-  //   });
-  // }
 
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
