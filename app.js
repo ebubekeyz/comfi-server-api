@@ -11,6 +11,7 @@ const path = require('path');
 const authRouter = require('./routes/authRouter');
 const productRouter = require('./routes/productRouter');
 const orderRouter = require('./routes/orderRouter');
+const uploadRouter = require('./routes/uploadRouter');
 
 const fileUpload = require('express-fileupload');
 
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use('/api/auth', authRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
+app.use('/api/upload', uploadRouter);
 
 app.get('/about', (req, res) => {
   res.send('Hello');
