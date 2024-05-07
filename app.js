@@ -22,7 +22,11 @@ const cors = require('cors');
 const xss = require('xss-clean');
 const helmet = require('helmet');
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://comfistore-frontend.netlify.app',
+  })
+);
 app.use(helmet());
 app.use(xss());
 
