@@ -21,7 +21,7 @@ const notFoundMiddleware = require('./middleware/not-found');
 const cors = require('cors');
 const xss = require('xss-clean');
 const helmet = require('helmet');
-
+//d
 app.use(
   cors({
     origin: 'https://comfistore-frontend.netlify.app',
