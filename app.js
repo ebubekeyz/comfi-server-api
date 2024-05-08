@@ -21,10 +21,15 @@ const notFoundMiddleware = require('./middleware/not-found');
 const cors = require('cors');
 const xss = require('xss-clean');
 const helmet = require('helmet');
-//du
+
+let originUrl =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://localhost:5173'
+    : 'https://comfistore-frontend.netlify.app';
+
 app.use(
   cors({
-    origin: 'https://comfistore-frontend.netlify.app',
+    origin: originUrl,
   })
 );
 app.use(helmet());
@@ -39,10 +44,6 @@ app.use('/api/auth', authRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/upload', uploadRouter);
-
-app.get('/about', (req, res) => {
-  res.send('Hello');
-});
 
 app.use(errorHandlerMiddleware);
 app.use(notFoundMiddleware);
