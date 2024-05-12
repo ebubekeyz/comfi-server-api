@@ -93,6 +93,7 @@ const getAllProducts = async (req, res) => {
   if (sort === 'latest') {
     result = result.sort('-createdAt');
   }
+
   if (sort === 'oldest') {
     result = result.sort('createdAt');
   }

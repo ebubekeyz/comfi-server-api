@@ -24,7 +24,7 @@ const helmet = require('helmet');
 
 let originUrl =
   process.env.NODE_ENV !== 'production'
-    ? 'http://localhost:5173'
+    ? 'http://localhost:5174'
     : 'https://comfistore-frontend.netlify.app';
 
 app.use(
@@ -32,7 +32,12 @@ app.use(
     origin: originUrl,
   })
 );
-app.use(helmet());
+
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 app.use(xss());
 
 app.use(fileUpload());

@@ -27,10 +27,23 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please provide an image'],
     },
+
     description: {
       type: String,
     },
-    colors: ['black', 'white'],
+    color1: {
+      type: String,
+    },
+    color2: {
+      type: String,
+    },
+    color3: {
+      type: String,
+    },
+    color4: {
+      type: String,
+    },
+    colors: [],
     user: {
       type: mongoose.Types.ObjectId,
       ref: 'User',
@@ -39,5 +52,7 @@ const ProductSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
+ProductSchema.pre('save', function () {
+  this.colors.unshift(this.color1, this.color2, this.color3, this.color4);
+});
 module.exports = mongoose.model('Product', ProductSchema);
